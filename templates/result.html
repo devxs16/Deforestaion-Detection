@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detection Result — ForestWatch AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L4 14h5l-3 8 9-12h-5l3-8z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">ForestWatch<span>AI</span></div>
+        <div class="brand-tag">Satellite Change Intelligence</div>
+      </div>
+    </div>
+    <a href="/" class="header-back">← New analysis</a>
+  </header>
+
+  <main class="container">
+    <section class="hero result-hero">
+      <div class="chip chip-success">✓ Analysis complete</div>
+      <h1>Change Detection <span class="gradient-text">Report</span></h1>
+      <p class="subtitle">
+        The model compared your two images and highlighted regions where land cover has meaningfully changed.
+        Red / bright regions indicate likely deforestation or disturbance.
+      </p>
+    </section>
+
+    <section class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Changed Patches</div>
+        <div class="stat-value">{{ total_changes }}</div>
+        <div class="stat-foot">patch-level change signals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Status</div>
+        <div class="stat-value stat-ok">Detected</div>
+        <div class="stat-foot">model confidence applied</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Output</div>
+        <div class="stat-value">Change Map</div>
+        <div class="stat-foot">annotated overlay below</div>
+      </div>
+    </section>
+
+    <section class="card result-card">
+      <div class="result-head">
+        <div>
+          <div class="result-title">Annotated Change Map</div>
+          <div class="result-sub">Regions highlighted by the model overlaid on your imagery</div>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><i class="lg lg-change"></i> Changed</span>
+          <span class="legend-item"><i class="lg lg-stable"></i> Stable</span>
+        </div>
+      </div>
+      <div class="result-image-wrap">
+        <img src="{{ url_for('static', filename=result_image) }}" alt="Detection result" class="result-image">
+      </div>
+    </section>
+
+    <div class="cta-row">
+      <a href="/" class="btn-primary btn-inline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Detect Another Area
+      </a>
+      <a href="{{ url_for('static', filename=result_image) }}" download class="btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12M6 11l6 6 6-6M5 21h14"/>
+        </svg>
+        Download Map
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© ForestWatch AI</span>
+    <span>Built for planetary-scale monitoring</span>
+  </footer>
+</body>
+</html>

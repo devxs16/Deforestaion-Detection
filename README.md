@@ -1,3 +1,4 @@
+![alt text](image.png)
 # 🌳 AI-Powered Deforestation Detection using Satellite Imagery
 
 An end-to-end deep learning application that detects land-cover changes between two satellite images captured at different times. The system classifies image patches using a fine-tuned ResNet-50 model and highlights regions where significant changes have occurred.
@@ -156,7 +157,3 @@ The application:
 - Cloud masking and preprocessing.
 
 ---
-
-## 📄 License
-
-This project is intended for educational and research purposes.
